@@ -1,0 +1,17 @@
+services:
+  web:
+    build: .
+    command: gunicorn myproject.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    networks:
+      - myproject_default
+
+
+
+networks:
+  myproject_default:
+    external: true
+

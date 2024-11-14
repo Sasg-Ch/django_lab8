@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Робота з Django py</title>
+</head>
+<style>
+    h2.FIO{
+        color: red
+    }
+</style>
+<body>
+    <h1>Лабораторна робота 8 Django-застосунок</h1>
+    <h2 class="FIO"><i>Черненко Олександр Олександрович 23004бск</i></h2>
+
+    <h2>Таблиця Склади (Storages)</h2>
+    <table border=1>
+        <tr>
+            <td ALIGN=center><b>ID</b></td>
+            <td ALIGN=center><b>Адреса</b></td>
+            <td ALIGN=center><b>Завідувач</b></td>
+            <td ALIGN=center><b>Телефон</b></td>
+        </tr>
+        {% for storage in storagess %}
+            <tr class='storage'>
+                <td ALIGN=center>{{ storage.storage_id }}</td>
+                <td ALIGN=center>{{ storage.storage_address }}</td>
+                <td ALIGN=center>{{ storage.storage_manager }}</td>
+                <td ALIGN=center>{{ storage.phone }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Таблиця Клієнти (Customers)</h2>
+    <table border=1>
+        <tr>
+            <td ALIGN=center><b>ID</b></td>
+            <td ALIGN=center><b>Назва клієнта</b></td>
+            <td ALIGN=center><b>Адреса</b></td>
+            <td ALIGN=center><b>Телефон</b></td>
+            <td ALIGN=center><b>Контактна особа</b></td>
+        </tr>
+        {% for customer in customers %}
+            <tr class='customer'>
+                <td ALIGN=center>{{ customer.customer_id }}</td>
+                <td ALIGN=center>{{ customer.customer_name }}</td>
+                <td ALIGN=center>{{ customer.customer_address }}</td>
+                <td ALIGN=center>{{ customer.phone }}</td>
+                <td ALIGN=center>{{ customer.contact_person }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Таблиця Товари (Items)</h2>
+    <table border=1>
+        <tr>
+            <td ALIGN=center><b>ID</b></td>
+            <td ALIGN=center><b>Тип</b></td>
+            <td ALIGN=center><b>Назва одягу</b></td>
+            <td ALIGN=center><b>Виробник</b></td>
+            <td ALIGN=center><b>Склад</b></td>
+            <td ALIGN=center><b>Кількість</b></td>
+            <td ALIGN=center><b>Ціна</b></td>
+        </tr>
+        {% for item in items %}
+            <tr class='item'>
+                <td ALIGN=center>{{ item.item_id }}</td>
+                <td ALIGN=center>{{ item.type }}</td>
+                <td ALIGN=center>{{ item.name_item }}</td>
+                <td ALIGN=center>{{ item.maker }}</td>
+                <td ALIGN=center>{{ item.storages.storage_address }}</td>
+                <td ALIGN=center>{{ item.quantity }}</td>
+                <td ALIGN=center>{{ item.price }}₴</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Таблиця Покупки (Sales)</h2>
+    <table border=1>
+        <tr>
+            <td ALIGN=center><b>ID</b></td>
+            <td ALIGN=center><b>Дата покупки</b></td>
+            <td ALIGN=center><b>Клієнт</b></td>
+            <td ALIGN=center><b>Предмет</b></td>
+            <td ALIGN=center><b>Кількість покупок</b></td>
+            <td ALIGN=center><b>Знижка</b></td>
+        </tr>
+        {% for sale in sales %}
+            <tr class='sale'>
+                <td ALIGN=center>{{ sale.sale_id }}</td>
+                <td ALIGN=center>{{ sale.sale_date }}</td>
+                <td ALIGN=center>{{ sale.customer_code.customer_name }}</td>
+                <td ALIGN=center>{{ sale.code_item.name_item }}</td>
+                <td ALIGN=center>{{ sale.sold_count }}</td>
+                <td ALIGN=center>{{ sale.discount }}%</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
